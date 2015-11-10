@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -7,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by Irpan Budiana on 11/10/2015.
  */
-public class Main extends Application {
+public class Main extends Application implements EventHandler<ActionEvent>{
     Button button;
     public static void main(String[] args) {
         launch(args);
@@ -18,6 +20,7 @@ public class Main extends Application {
         primaryStage.setTitle("Latihan JavaFX");
         button = new Button();
         button.setText("Klik saya dong!");
+        button.setOnAction(this);
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
@@ -25,5 +28,12 @@ public class Main extends Application {
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    @Override
+    public void handle(ActionEvent event) {
+        if (event.getSource()==button) {
+            System.out.println("Ok deh, mantapp!!");
+        }
     }
 }
