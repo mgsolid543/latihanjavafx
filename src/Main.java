@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by Irpan Budiana on 11/10/2015.
  */
-public class Main extends Application implements EventHandler<ActionEvent>{
+public class Main extends Application {
     Button button;
     public static void main(String[] args) {
         launch(args);
@@ -20,7 +20,12 @@ public class Main extends Application implements EventHandler<ActionEvent>{
         primaryStage.setTitle("Latihan JavaFX");
         button = new Button();
         button.setText("Klik saya dong!");
-        button.setOnAction(this);
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Aku adalah inner class yang anonim");
+            }
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
@@ -28,12 +33,5 @@ public class Main extends Application implements EventHandler<ActionEvent>{
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    @Override
-    public void handle(ActionEvent event) {
-        if (event.getSource()==button) {
-            System.out.println("Ok deh, mantapp!!");
-        }
     }
 }
